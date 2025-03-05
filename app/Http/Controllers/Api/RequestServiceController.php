@@ -14,10 +14,10 @@ class RequestServiceController extends ApiController
     public function index()
     {
         $response = Gate::allows('viewAny', RequestService::class)
-            ? RequestService::all()
+            ? RequestService::with(['user'])->get()
             : auth()->user()->requestServices()->get();
 
-        return $this->responseSuccess(compact('response'));
+        return $this->responseSuccess($response);
     }
 
     public function store(StoreRequestServiceRequest $request)
@@ -30,13 +30,14 @@ class RequestServiceController extends ApiController
             'description' => $request->description,
             'user_id' => auth()->id()
         ]);
-        return $this->responseSuccess(compact('requestService'));
+        return $this->responseSuccess($requestService);
     }
+
     public function show($id)
     {
         $requestService = RequestService::find($id);
         Gate::authorize('view', $requestService);
-        return $this->responseSuccess(compact('requestService'));
+        return $this->responseSuccess($requestService);
     }
 
     public function update(UpdateRequestServiceRequest $request, $id)
@@ -47,7 +48,7 @@ class RequestServiceController extends ApiController
         }
         $requestService->update($request->all());
         $request = RequestService::find($id);
-        return $this->responseSuccess(data: compact('request'), message: 'Updated successfully');
+        return $this->responseSuccess(data: $request, message: 'Updated successfully');
     }
 
     public function destroy(Request $request, $id)
