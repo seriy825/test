@@ -52,4 +52,4 @@ USER backend
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]
+ENTRYPOINT ["sh", "-c", "php artisan queue:work --daemon & php artisan schedule:run && php-fpm"]

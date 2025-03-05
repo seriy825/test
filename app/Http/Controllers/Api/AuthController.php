@@ -42,8 +42,6 @@ class AuthController extends ApiController
 
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
 
-        //TODO: Send email verification
-
         return $this->responseSuccess(compact('token'));
     }
 

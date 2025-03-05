@@ -46,4 +46,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function requestServices()
+    {
+        return $this->hasMany(RequestService::class);
+    }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }
