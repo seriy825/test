@@ -367,6 +367,124 @@
                 ]
             }
         },
+        "/api/rates": {
+            "get": {
+                "tags": [
+                    "Currency Rate"
+                ],
+                "summary": "Get currency rates",
+                "operationId": "889287c3d53febdf4f552aeb76f3724f",
+                "responses": {
+                    "200": {
+                        "description": "Currency rates retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "response": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "currency": {
+                                                                "type": "string",
+                                                                "example": "USD"
+                                                            },
+                                                            "rate": {
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 1.2345
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Currency rates retrieved successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Currency rates not found in cache",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Currency rates not found in cache"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/requests": {
             "get": {
                 "tags": [
@@ -979,6 +1097,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Currency Rate",
+            "description": "Currency Rate"
         },
         {
             "name": "Request Service",

@@ -4,8 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Cache;
+use App\Services\CurrencyRateService;
 
 class CurrencyRateJob implements ShouldQueue
 {
@@ -22,13 +21,8 @@ class CurrencyRateJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle(CurrencyRateService $currencyRateService): void
     {
-        $client = new Client();
-        $response = $client->get('https://open.er-api.com/v6/latest/USD');
-
-        $rates = json_decode($response->getBody()->getContents(), true);
-
-        Cache::store('redis')->put(config('currency.cache_key'), $rates, now()->addDay());
+        $currencyRateService->updateRates();
     }
 }

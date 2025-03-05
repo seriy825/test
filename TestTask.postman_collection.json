@@ -49,7 +49,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"admin@email.com\",\r\n    \"password\":\"adminPassword123\"\r\n}",
+							"raw": "{\r\n    \"email\":\"some@email.com\",\r\n    \"password\":\"pass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,16 +71,6 @@
 				{
 					"name": "Logout",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|by60avsDbAsNvgghS04K0Xr37CwBOrDSwqGKpHN14166c875",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"url": {
@@ -98,16 +88,6 @@
 				{
 					"name": "Get current user",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "3|sNa1KPLjvZ2E9Qsnu27dxP8wuJcO0tAEbUHI6nds1c8539e8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -293,12 +273,12 @@
 	"variable": [
 		{
 			"key": "adminToken",
-			"value": "4|j7ipuKVl3jxfkq55KyVJFKBhik5EYsrL5u9PS2EYf578e250",
+			"value": "*admin token here*",
 			"type": "string"
 		},
 		{
 			"key": "userToken",
-			"value": "3|sNa1KPLjvZ2E9Qsnu27dxP8wuJcO0tAEbUHI6nds1c8539e8",
+			"value": "*user token here*",
 			"type": "string"
 		}
 	]
